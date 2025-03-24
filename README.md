@@ -1,0 +1,2 @@
+# fakeGen
+Generates fake receipt
