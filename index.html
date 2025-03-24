@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="./output.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Fake PayPal Account</title>
+</head>
+
+<body>
+    <div class="flex flex-col items-center justify-center h-screen w-screen">
+        <img src="logo.png" alt="logo" class="w-24 h-24 shadoww-lg" />
+        <h1 class="text-green-900 text-[min(4vw,45px)] font-semibold mt-5">
+            Generate fake balance account balance & Print
+        </h1>
+        <p class="text-gray-500 font-bold text-center my-5">
+            Easily fill in the form to generate account balance
+        </p>
+
+        <!DOCTYPE html>
+        <html lang="en">
+
+        <head>
+            <meta charset="UTF-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <title>Responsive Form</title>
+            <script src="https://cdn.tailwindcss.com"></script>
+        </head>
+
+        <body class="p-4 bg-gray-100">
+            <div class="max-w-md mx-auto bg-white p-6 rounded-lg shadow-md">
+                <form id="myForm">
+                    <!-- Amount Input -->
+                    <div class="flex flex-col gap-2 mb-4">
+                        <label for="amount" class="text-gray-700 font-medium">  <i class="fas fa-coins icon"></i> Amount:</label
+              >
+              <input
+                type="text"
+                id="amount"
+                placeholder="Enter amount"
+                class="border border-gray-400 p-2 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+
+            <!-- Currency Dropdown -->
+            <div class="flex flex-col gap-2 mb-4">
+              <label for="currency" class="text-gray-700 font-medium"
+                ><i class="fas fa-money-bill-wave icon"></i> Currency:</label
+              >
+              <select
+                id="currency"
+                class="border border-gray-400 p-2 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+              >
+                <option>USD</option>
+                <option>EUR</option>
+                <option>GBP</option>
+                <option>JPY</option>
+                <option>CAD</option>
+                <option>AUD</option>
+                <option>CHF</option>
+                <option>NGN</option>
+              </select>
+            </div>
+
+            <!-- Screen View Dropdown -->
+            <div class="flex flex-col gap-2 mb-4">
+              <label for="screen" class="text-gray-700 font-medium"
+                >  <i class="fas fa-desktop icon"></i> Screen View:</label
+              >
+              <select
+                id="screen"
+                class="border border-gray-400 p-2 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+              >
+                <option>Mobile Phone (Screenshot from phone)</option>
+                <option>Desktop (Computer/tablet screens)</option>
+              </select>
+            </div>
+
+            <!-- Passkey Input -->
+            <div class="flex flex-col gap-2 mb-4">
+              <label for="passkey" class="text-gray-700 font-medium"
+                > <i class="fas fa-key icon"></i> Passkey:</label
+              >
+              <input
+                type="password"
+                id="passkey"
+                placeholder="Enter Passkey"
+                class="border border-gray-400 p-2 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+
+            <!-- Submit Button -->
+            <div class="flex justify-center mt-6">
+              <button
+                id="btnSubmit"
+                class="bg-blue-500 px-6 py-2 rounded-md text-white font-semibold hover:bg-blue-600 transition duration-300"
+              >
+              <i class="fas fa-paper-plane icon"></i> Generate Balance
+              </button>
+            </div>
+        </form>
+          </div>
+        </body>
+      </html>
+    </div>
+
+    <script type="text/javascript">
+      let isAllowed = false; // flag to check if the user is allowed to generate balance (if you have the passkey. if user has the passkey  isAllowed = true)
+      $(document).ready(function () {
+        $("#myForm").on("submit", function (event) {
+            event.preventDefault(); // Prevent default form submission
+
+          var amount = $("#amount").val();
+          var currency = $("#currency").val();
+          var screen = $("#screen").val();
+          var passkey = $("#passkey").val();
+          console.log(amount, currency, screen, passkey);
+          //Check if all fields are filled
+          if (amount == "" || currency == "" || screen == "") {
+            alert("Please enter amount in all fields");
+            return;
+          }
+          //Check if amount is a number
+          if (isNaN(amount)) {
+            alert("Please enter a valid amount (only numbers)");
+            return;
+          }
+          //Check if passkey is correct
+          if (passkey === "1234") {
+            isAllowed = true;
+          }
+
+          // Store values in localStorage
+          localStorage.setItem("amount", amount);
+          localStorage.setItem("currency", currency);
+          localStorage.setItem("screen", screen);
+          localStorage.setItem("passkey", passkey);
+
+//Check which screen the user wants to use
+            if (screen === "Mobile Phone (Screenshot from phone)") {
+            window.location.href = "mobileScreen.html";
+          } else {
+            window.location.href = "DesktopScreen.html";
+          }
+        });
+      });
+  
+      
+    </script>
+  </body>
+</html>

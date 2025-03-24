@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0" />
+    <title>Mobile Screen View</title>
+    <link href="./output.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <style>
+        .container {
+            padding: 10px;
+        }
+        
+        .blur-text-heavy {
+            filter: blur(5px);
+        }
+    </style>
+    <script>
+        function formatNumberWithCommas(number) {
+            // Convert the number to a string
+            let numStr = number.toString();
+
+            // Use regex to add commas as thousand separators
+            return numStr.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+        $(document).ready(function() {
+            // Retrieve values from localStorage
+            let amount = localStorage.getItem("amount");
+            amount = formatNumberWithCommas(amount);
+
+            let currency = localStorage.getItem("currency");
+
+            const passKey = localStorage.getItem("passkey");
+
+            //Select the selected curency
+            switch (currency) {
+                case "USD":
+
+                    currency = "\u0024"
+                    break;
+                case "EUR":
+
+                    currency = "\u20AC"
+                    break;
+                case "GBP":
+                    currency = "\u00A3"
+                    break;
+                case "CAD":
+                    currency = "\u0024"
+                    break;
+                case "AUD":
+                    currency = "\u0024"
+                    break;
+                case "JPY":
+                    currency = "\u00A5"
+                    break;
+                case "NGN":
+                    currency = "\u20A6"
+                    break;
+
+            }
+
+
+
+
+            // Display values on the page
+            $("#displayAmount").text(amount);
+            $("#displayCurrency").text(currency);
+
+            //check passKey value
+            if (passKey === "") {
+                $('#numb2').addClass('blur-text-heavy');
+                $('#displayCurrency').addClass('blur-text-heavy');
+                $('#displayAmount').addClass('blur-text-heavy');
+                //alert message for user( about passKey)
+                alert("Please enter the correct passkey to view your amount");
+
+            } else if (!passKey === "987650") {
+
+                $('#numb2').addClass('blur-text-heavy');
+                $('#displayCurrency').addClass('blur-text-heavy');
+                $('#displayAmount').addClass('blur-text-heavy');
+                //alert message for user( about passKey)
+                alert("Please enter the correct passkey to view your amount");
+
+            } else {
+                $('#displayCurrency').removeClass('blur-text-heavy');
+                $('#numb2').removeClass('blur-text-heavy');
+                $('#displayAmount').removeClass('blur-text-heavy');
+
+
+            }
+
+        });
+    </script>
+</head>
+
+<body>
+    <div class="flex justify-center my-4">
+        <div class="bg-[#FFF9F9] h-[730px] w-[300px]">
+            <div class="container flex flex-col">
+                <div id="topDiv " class="flex justify-between pl-7 mb-2">
+                    <div>
+                        <span>9:41</span>
+                    </div>
+                    <div id="networkIconContainer " class=" ">
+                        <i class="fa-solid fa-signal"></i>
+                        <i class="fas fa-wifi"></i>
+                        <i class="fa-solid fa-battery-half"></i>
+                    </div>
+                </div>
+                <div id="userIconContainer">
+                    <i class="fa-solid fa-user text-blue-900"></i>
+                    <i class="fa-solid fa-circle text-blue-900"></i>
+                </div>
+                <div id="balanceArea" class="shadow-[0_10px_20px_rgba(0,0,0,0.15)] hover:shadow-[0_15px_30px_rgba(0,0,0,0.25)] transition-shadow duration-300 w-full h-[180px] bg-white p-3 my-5 rounded-lg flex flex-col">
+                    <div class="flex items-end gap-4 mb-5">
+                        <img src="paypal_logo_2.png" class="w-6 h-7" />
+                        <span class="text-gray-400">PayPal balance</span>
+                    </div>
+                    <div id="amountContainer">
+                        <h3 class="text-2xl font-semibold">
+                            <span id="displayCurrency">&dollar;</span> <span id="displayAmount">0.00</span>
+                        </h3>
+                    </div>
+                    <div id="bottomTxt" class="mt-auto">
+                        <h3 class="font-semibold">Transfers daily</h3>
+                    </div>
+                </div>
+                <div id="sendPayment" class="shadow-[0_10px_20px_rgba(0,0,0,0.15)] hover:shadow-[0_15px_30px_rgba(0,0,0,0.25)] transition-shadow duration-300 w-full h-[150px] bg-white p-3 my-5 rounded-lg flex flex-col">
+                    <h4 class="font-semibold my-1">Send payments</h4>
+                    <div class="flex items-end gap-3">
+                        <div class="shadow-lg text-blue-500 border w-10 h-10 rounded-full flex justify-center items-center bg-gray-100">
+                            <i class="fas fa-paper-plane icon"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold">Pay from your phone</h4>
+                            <small class="text-gray-400">For the things you love.</small>
+                        </div>
+                    </div>
+                    <div class="mt-auto">
+                        <h1 class="text-center text-blue-700 font-semibold">Send now</h1>
+                    </div>
+                </div>
+
+                <div id="paymentHistoty" class="w-full h-[102px] bg-white p-3 my-5 rounded-lg flex flex-col shadow-[0_10px_20px_rgba(0,0,0,0.15)] hover:shadow-[0_15px_30px_rgba(0,0,0,0.25)] transition-shadow duration-300">
+                    <div id="nameContainer" class="flex items-end gap-2">
+                        <div class="flex items-center justify-center w-10 h-10 rounded-full bg-red-800 text-white font-bold">
+                            SJ
+                        </div>
+                        <div class="leading-5">
+                            <h1>Sara Jonas</h1>
+                            <small class="text-gray-400 font-semibold"><i class="fa-solid fa-clock"></i> 11:31am</small
+                >
+              </div>
+            </div>
+            <div class="flex justify-between mt-2">
+              <p class="text-sm text-gray-400">Request sent - Pending</p>
+              <p class="text-green-600 font-semibold " id="numb2">+&dollar;2400</p>
+            </div>
+          </div>
+
+          <div
+            id="bottomDiv"
+            class="mt-auto w-full h-[122px] bg-white p-3 my-5 rounded-lg flex flex-col shadow-[0_10px_20px_rgba(0,0,0,0.15)] hover:shadow-[0_15px_30px_rgba(0,0,0,0.25)] transition-shadow duration-300"
+          >
+            <div id="btnContainer" class="flex justify-between gap-2 my-3">
+              <button
+                class="bg-yellow-400 p-2 w-50 rounded-4xl font-bold text-green-900"
+              >
+                Send
+              </button>
+              <button
+                class="bg-yellow-400 p-2 w-50 rounded-4xl font-bold text-green-900"
+              >
+                Request
+              </button>
+            </div>
+
+            <div id="menuIconContainer" class="text-blue-500 flex justify-around">
+                <div class="text-center">
+                    <i class="fa-solid fa-house"></i>
+                    <p class="text-sm font-semibold">Home</p>
+                  
+                </div>
+                <div class="text-center">
+                    <i class="fa-solid fa-money-check"></i>
+                    <p class="text-sm font-semibold">Payments</p>
+                   
+                </div>
+                <div class="text-center"> 
+                    <i class="fa-solid fa-cash-register"></i>
+                    <p class="text-sm font-semibold">Payment M...</p>
+                   
+                </div>
+                
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <a href="index.html" class="bg-blue-500 font-semibold p-3 rounded-sm text-white"><i class="fa-solid fa-arrow-left"></i> Go back</a>
+
+
+    
+  </body>
+</html>

@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="./output.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <title>Fake PayPal Account</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Gidole&display=swap" rel="stylesheet" />
+    <style>
+        body {
+            font-family: "Gidole", sans-serif;
+            font-weight: 100;
+            font-style: normal;
+        }
+        
+        .container {
+            padding: 0 60px;
+            margin: 0 auto;
+        }
+        
+        .blur-text-heavy {
+            filter: blur(5px);
+        }
+        
+        .active {
+            position: relative;
+            padding: 5px 15px;
+            /* Adjust padding as needed */
+            border-radius: 20px;
+            /* Curve radius */
+            background: linear-gradient( to right, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+            /* Faded effect */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            /* Optional: Add a subtle shadow */
+            display: inline-flex;
+            /* Ensure the active item aligns with other list items */
+            align-items: center;
+            /* Vertically center the content */
+        }
+        
+        ul.flex {
+            align-items: center;
+            /* Ensure all list items are vertically aligned */
+        }
+    </style>
+    <script>
+        function formatNumberWithCommas(number) {
+            // Convert the number to a string
+            let numStr = number.toString();
+
+            // Use regex to add commas as thousand separators
+            return numStr.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+        $(document).ready(function() {
+            // Retrieve values from localStorage
+            let amount = localStorage.getItem("amount");
+            amount = formatNumberWithCommas(amount);
+
+            let currency = localStorage.getItem("currency");
+
+            const passKey = localStorage.getItem("passkey");
+            //Select the selected curency
+            switch (currency) {
+                case "USD":
+
+                    currency = "\u0024"
+                    break;
+                case "EUR":
+
+                    currency = "\u20AC"
+                    break;
+                case "GBP":
+                    currency = "\u00A3"
+                    break;
+                case "CAD":
+                    currency = "\u0024"
+                    break;
+                case "AUD":
+                    currency = "\u0024"
+                    break;
+                case "JPY":
+                    currency = "\u00A5"
+                    break;
+                case "NGN":
+                    currency = "\u20A6"
+                    breakk;
+
+            }
+
+
+            // const passkey = localStorage.getItem("passkey");
+
+            // Display values on the page
+            $("#displayAmount").text(amount);
+            $("#displayCurrency").text(currency);
+
+            //check passKey value
+            if (passKey === "") {
+                $('#numb1').addClass('blur-text-heavy');
+                $('#numb2').addClass('blur-text-heavy');
+                $('#numb3').addClass('blur-text-heavy');
+                $('#displayCurrency').addClass('blur-text-heavy');
+                $('#displayAmount').addClass('blur-text-heavy');
+                //alert message for user( about passKey)
+                alert("Please enter the correct passkey to view your amount");
+
+            } else if (!passKey === "987650") {
+
+                $('#numb1').addClass('blur-text-heavy');
+                $('#numb2').addClass('blur-text-heavy');
+                $('#numb3').addClass('blur-text-heavy');
+                $('#displayCurrency').addClass('blur-text-heavy');
+                $('#displayAmount').addClass('blur-text-heavy');
+                //alert message for user( about passKey)
+                alert("Please enter the correct passkey to view your amount");
+
+
+            } else {
+                $('#displayCurrency').removeClass('blur-text-heavy');
+                $('#numb1').removeClass('blur-text-heavy');
+                $('#numb2').removeClass('blur-text-heavy');
+                $('#numb3').removeClass('blur-text-heavy');
+                $('#displayAmount').removeClass('blur-text-heavy');
+
+            }
+
+        });
+    </script>
+</head>
+
+<body class="bg-gray-100">
+    <div style="background-color: #1b4ebde7">
+        <nav class="container flex items-center gap-5" style="width:1700px">
+            <div id="logo">
+                <img src="navLogo.png" alt="logo" class="w-14 h-14" />
+            </div>
+            <ul class="flex gap-10 text-white font-light" style="font-size: 14px">
+                <li class="active">Dashboard</li>
+                <li>Finances</li>
+                <li>Send and Request</li>
+                <li>Reports</li>
+                <li class="flex items-end gap-3">Deals</li>
+                <li class="flex items-end gap-3">Wallet</li>
+                <li>Activity</li>
+                <li>Help</li>
+            </ul>
+            <div class="mx-auto flex items-center justify-around gap-10" style="color: white">
+                <i class="fa-solid fa-bell"></i>
+                <i class="fa-solid fa-gear"></i>
+                <button class="p-2" style="width: 100px; font-size: 15px; font-weight: 600">
+            Log Out
+          </button>
+            </div>
+        </nav>
+    </div>
+    <div class="container flex gap-5 justify-between" style="width:1360px">
+        <div id="leftSide" style="display: flex; flex-direction: column; gap: 10px">
+            <div id="balanceArea" class="shadow-[0_10px_20px_rgba(0,0,0,0.15)] hover:shadow-[0_15px_30px_rgba(0,0,0,0.25)] transition-shadow duration-300 w-full h-[238px] bg-white p-5 my-5 rounded-lg flex flex-col">
+                <div class="flex justify-between items-center gap-4 mb-5">
+                    <span class="font-semibold" style="font-size: 20px; color:#0b204e">PayPal balance</span>
+                    <i class="fa-solid fa-ellipsis-vertical" style="color:#052b7e;"></i>
+                </div>
+                <div id="amountContainer">
+                    <h1 class="text-4xl font-semibold text-[#1b4ebde7]" style="color:#0b204e;"><span id="displayCurrency">$</span><span id="displayAmount">9,999,843.15</span></h1>
+                    <p style="margin-top:10px; font-size:12px;color:#0b204e;">Available</p>
+                </div>
+                <div id="btnTransferr" class="mt-5">
+                    <button class="rounded-4xl text-white font-semibold" style="background-color:#1b4ebde7; padding:6px; font-size:12px; width:100px">Transfer Money</button>
+
+                </div>
+
+
+            </div>
+            <div style="padding: 50px 15px; height: 180px;">
+                <p>
+                    See when money comes in, and when it goes out. You'll find your recent PayPal activity here.
+                </p>
+            </div>
+
+
+        </div>
+        <div id="rightSide" class="p-3" style="background-color: #fff;  height: 104vh; width:50%">
+            <div class="flex justify-between items-center gap-4 p-5" style="padding-top:25px">
+                <div>
+                    <h1 class="font-semibold mb-5">Send again</h1>
+                </div>
+                <i class="fa-solid fa-ellipsis-vertical" style="color:#052b7e;"></i>
+
+            </div>
+            <div class="flex  gap-5">
+                <div>
+                    <div class="border-2 rounded-full bg-gray-300 flex justify-center items-center" style="width:50px; height:50px;color:white; background-color:#1b4ebde7">
+                        <i class="fa-solid fa-shop"></i>
+
+                    </div>
+                    Daniel...
+                </div>
+                <div>
+                    <div class="border-2 rounded-full bg-gray-300 flex justify-center items-center" style="width:50px; height:50px;color:white; background-color:#1b4ebde7">
+                        <i class="fa-solid fa-magnifying-glass-dollar"></i>
+
+                    </div>
+                    search
+                </div>
+
+            </div>
+            <div style="padding-top:100px">
+                <div class="flex justify-between items-center mt-5 p-5">
+                    <h1 class="font-bold">Banks and cards</h1>
+                    <i class="fa-solid fa-ellipsis-vertical" style="color:#052b7e;"></i>
+
+                </div>
+                <div>
+                    <div class="flex gap-5 mt-5">
+                        <img src="bank.png" alt="" style="width:50px; height:50px">
+                        <div>
+                            <h1 class="font-semibold">CREDIT UNION 1</h1>
+                            <small>Checking ****1968</small>
+                        </div>
+                    </div>
+                    <div class="flex gap-5 my-5">
+
+                        <i class="fa-brands fa-cc-visa" style="font-size:50px"></i>
+                        <div>
+                            <h1 class="font-semibold">The Bank Card Plantnum Rewards</h1>
+                            <small>Credit ****1496</small>
+                        </div>
+                    </div>
+
+                </div>
+                <div id="recentHistory" class="shadow-lg" style="margin-top:40px">
+                    <h1 style="font-weight:600">Recent activity</h1>
+                    <div>
+                        <div class="flex gap-5">
+                            <div class="w-10">
+                                <h1 class="font-semibold">MAR</h1>
+                                <h1>20</h1>
+                            </div>
+                            <div>
+                                <h1 class="font-semibold">Peter B. Smith</h1>
+                                <small>Money sent</small>
+                            </div>
+                            <div class="mx-auto w-80">
+                                <h1 class="text-right font-semibold" style="color:#0b204e" id="numb1">-$8,500.00</h1>
+                            </div>
+
+
+                        </div>
+                        <div class="mt-5" style="background-color:aliceblue;height:1px; width:100%"></div>
+
+                        <div class="flex gap-5">
+                            <div class="w-10">
+                                <h1 class="font-semibold">MAR</h1>
+                                <h1>19</h1>
+                            </div>
+                            <div>
+                                <h1 class="font-semibold">Larry Steel Company</h1>
+                                <small>Money sent</small>
+                            </div>
+                            <div class="mx-auto w-80">
+                                <h1 class="text-right font-semibold" style="color:#0b204e" id="numb2">-$45,350.00</h1>
+                            </div>
+
+
+                        </div>
+                        <div class="mt-5" style="background-color:aliceblue;height:1px; width:100%"></div>
+                        <div class="flex gap-5">
+                            <div class="w-10">
+                                <h1 class="font-semibold">MAR</h1>
+                                <h1>03</h1>
+                            </div>
+                            <div>
+                                <h1 class="font-semibold">Mitcha keil</h1>
+                                <small>Money sent</small>
+                            </div>
+                            <div class="mx-auto w-80">
+                                <h1 class="text-right font-semibold" style="color:#0b204e" id="numb3">-$1,500.00</h1>
+                            </div>
+
+
+                        </div>
+                        <div class="mt-5" style="background-color:aliceblue;height:1px; width:100%"></div>
+
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+        </div>
+    </div>
+    <a href="index.html" class="bg-blue-500 font-semibold p-3 rounded-sm text-white"><i class="fa-solid fa-arrow-left"></i> Go back</a>
+</body>
+
+</html>
